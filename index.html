@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karthikeyan Srinivasalu – Industrial & Full Stack Developer</title>
+  <title>Karthikeyan Srinivasalu – Full Stack & Industrial Developer</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -23,10 +23,11 @@
       --muted: #6b7a8d;
       --grid: rgba(0, 220, 130, 0.04);
       --glow: 0 0 40px rgba(0, 220, 130, 0.08);
+      --viewprojecttext: #000000;
     }
 
-    /* Updated Light Mode Color Palette: Warm & Earthy Tones */
     [data-theme="light"] {
+      --viewprojecttext: #ffffff;
       --bg: #F9F8F6;
       --bg2: #EFE9E3;
       --bg3: #D9CFC7;
@@ -52,7 +53,7 @@
     }
 
     body {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
@@ -66,29 +67,28 @@
       cursor: none;
     }
 
-    /* CUSTOM CURSOR: GLOWING DOT */
     #ks-cursor-dot {
       position: fixed;
       z-index: 99999;
       pointer-events: none;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      transition: transform 0.08s ease, opacity 0.3s, background 0.2s, box-shadow 0.2s;
+      transition: transform 0.08s ease, opacity 0.3s, background 0.2s;
       will-change: left, top;
       top: -100px;
       left: -100px;
     }
 
     #ks-cursor-dot.day {
-      background: #f5c518;
-      box-shadow: 0 0 18px #f5c518, 0 0 8px rgba(245, 197, 24, 0.8);
+      background: #7A5C3A;
+      box-shadow: 0 0 18px #C9B59C;
     }
 
     #ks-cursor-dot.night {
-      background: #ffffff;
-      box-shadow: 0 0 20px #ffffff, 0 0 10px rgba(255, 255, 255, 0.9);
+      background: #00dc82;
+      box-shadow: 0 0 20px #00dc82;
     }
 
     #ks-cursor-dot.clicking {
@@ -104,7 +104,7 @@
       height: 4px;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      transition: left 0.12s ease, top 0.12s ease, opacity 0.3s;
+      transition: left 0.12s ease, top 0.12s ease;
       opacity: 0.5;
       top: -100px;
       left: -100px;
@@ -116,34 +116,65 @@
     }
 
     #ks-cursor-trail.night {
-      background: #ffffff;
-      box-shadow: 0 0 6px #ffffff;
+      background: #00dc82;
+      box-shadow: 0 0 6px #00dc82;
     }
 
-    #ks-cursor-trail.clicking {
-      opacity: 0.15;
-      transform: translate(-50%, -50%) scale(1.6);
+    .floating-contact-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1001;
+      background: var(--accent);
+      color: var(--viewprojecttext);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* 3D Canvas Background - Stunning Galaxy */
+    .floating-contact-btn:hover {
+      transform: scale(1.1) translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0, 220, 130, 0.4);
+    }
+
+    .floating-contact-btn i {
+      font-size: 1.5rem;
+    }
+
+    [data-theme="light"] .floating-contact-btn {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
     #threeCanvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
       pointer-events: none;
       opacity: 0.7;
     }
 
-    /* Meteor / Particle Canvas overlay */
+    #threeCanvas canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
     #meteorCanvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       z-index: 1;
       pointer-events: none;
     }
@@ -156,7 +187,6 @@
       z-index: 10;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 20px;
@@ -177,7 +207,6 @@
     [data-theme="light"] nav {
       background: rgba(249, 248, 246, 0.85);
       border-color: rgba(201, 181, 156, 0.4);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
     }
 
     .nav-logo {
@@ -188,11 +217,97 @@
       text-transform: uppercase;
     }
 
+    /* Desktop navigation links */
     .nav-links {
       display: flex;
       gap: 2rem;
       align-items: center;
       flex-wrap: wrap;
+    }
+
+    /* Mobile menu button - hidden by default */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu-btn:hover {
+      color: var(--accent);
+    }
+
+    /* Mobile navigation overlay */
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 12, 15, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-nav-overlay.active {
+      transform: translateX(0);
+    }
+
+    .mobile-nav-overlay a {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      padding: 1rem 2rem;
+      margin: 0.5rem 0;
+      transition: all 0.2s;
+    }
+
+    .mobile-nav-overlay a:hover {
+      color: var(--accent);
+      transform: translateX(10px);
+    }
+
+    .close-menu-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .close-menu-btn:hover {
+      color: var(--accent);
+    }
+
+    [data-theme="light"] .mobile-nav-overlay {
+      background: rgba(249, 248, 246, 0.98);
+    }
+
+    @media (max-width: 920px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
     }
 
     .nav-links a {
@@ -201,6 +316,7 @@
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
+      font-weight: 500;
       transition: color 0.2s;
     }
 
@@ -220,15 +336,8 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s;
     }
 
-    .theme-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* HERO */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -257,7 +366,6 @@
 
     .hero-tag::before {
       content: '';
-      display: block;
       width: 28px;
       height: 1px;
       background: var(--accent);
@@ -265,9 +373,9 @@
 
     .hero-name {
       font-size: clamp(2.8rem, 5vw, 4.5rem);
-      font-weight: 800;
+      font-weight: 900;
       line-height: 1.05;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
 
     .hero-name span {
@@ -276,9 +384,9 @@
 
     .hero-title {
       font-family: 'Space Mono', monospace;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       color: var(--muted);
-      margin: 1.2rem 0 2rem;
+      margin: 1.2rem 0 1rem;
       letter-spacing: 0.08em;
       min-height: 4rem;
     }
@@ -293,41 +401,25 @@
     }
 
     @keyframes blinkCursor {
-
-      0%,
-      100% {
-        border-color: var(--accent);
-      }
-
       50% {
         border-color: transparent;
       }
     }
 
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
     .btn-primary {
       background: var(--accent);
-      color: #F9F8F6;
+      color: var(--viewprojecttext);
       padding: 0.75rem 1.75rem;
       border-radius: 4px;
       text-decoration: none;
       font-weight: 700;
       font-size: 0.82rem;
       text-transform: uppercase;
-      transition: all 0.2s;
-      border: 2px solid transparent;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-    }
-
-    [data-theme="light"] .btn-primary {
-      color: #F9F8F6;
+      border: 2px solid transparent;
+      transition: all 0.2s;
     }
 
     .btn-primary:hover {
@@ -358,18 +450,11 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      overflow: hidden;
       box-shadow: var(--glow);
       animation: floatCard 6s ease-in-out infinite;
     }
 
     @keyframes floatCard {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
       50% {
         transform: translateY(-12px);
       }
@@ -413,7 +498,7 @@
       padding: 1.5rem;
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
-      line-height: 2;
+      line-height: 2.1;
     }
 
     .term-line {
@@ -451,7 +536,6 @@
       }
     }
 
-    /* SECTIONS */
     section {
       padding: 5rem 0;
     }
@@ -492,20 +576,12 @@
       line-height: 1.7;
     }
 
-    .sec-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 0;
-    }
-
-    /* ABOUT */
     .about-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 4rem;
       align-items: start;
-      margin-top: 3.5rem;
+      margin-top: 3rem;
     }
 
     .about-text p {
@@ -515,15 +591,11 @@
       font-size: 0.95rem;
     }
 
-    .about-text strong {
-      color: var(--text);
-      font-weight: 700;
-    }
-
     .stat-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
+      margin-bottom: 1rem;
     }
 
     .stat-card {
@@ -531,7 +603,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1.2rem 1.4rem;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: all 0.2s;
     }
 
     .stat-card:hover {
@@ -543,19 +615,28 @@
       font-size: 2rem;
       font-weight: 800;
       color: var(--accent);
-      line-height: 1;
+      line-height: 1.2;
       margin-bottom: 0.3rem;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+
+    .stat-symbol {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
     }
 
     .stat-label {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--muted);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       font-family: 'Space Mono', monospace;
     }
 
-    /* SKILLS */
     #skills {
       background: var(--bg2);
     }
@@ -573,22 +654,17 @@
       border-radius: 12px;
       padding: 1.6rem;
       transition: all 0.25s;
-      position: relative;
-    }
-
-    .skill-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-5px);
     }
 
     .skill-icon {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       margin-bottom: 1rem;
+      color: var(--accent);
     }
 
     .skill-name {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem;
       margin-bottom: 0.6rem;
     }
 
@@ -605,12 +681,10 @@
       padding: 3px 10px;
       font-family: 'Space Mono', monospace;
       font-size: 0.64rem;
-      color: var(--muted);
     }
 
-    /* EXPERIENCE TIMELINE */
     .exp-timeline {
-      margin-top: 3.5rem;
+      margin-top: 3rem;
       position: relative;
     }
 
@@ -653,15 +727,15 @@
 
     .exp-company {
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
     }
 
     .exp-role {
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
       color: var(--accent);
-      background: rgba(122, 92, 58, 0.1);
-      border: 1px solid rgba(122, 92, 58, 0.25);
+      background: rgba(0, 220, 130, 0.1);
+      border: 1px solid rgba(0, 220, 130, 0.25);
       border-radius: 4px;
       padding: 2px 10px;
     }
@@ -681,7 +755,7 @@
       color: var(--muted);
       font-size: 0.88rem;
       line-height: 1.75;
-      padding: 0.35rem 0;
+      padding: 0.25rem 0;
       padding-left: 1rem;
       position: relative;
     }
@@ -693,26 +767,11 @@
       color: var(--accent);
     }
 
-    /* PROJECTS */
-    .projects-section {
-      margin-bottom: 3rem;
-    }
-
-    .projects-subtitle {
-      font-family: 'Space Mono', monospace;
-      font-size: 1rem;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin: 2rem 0 1.5rem 0;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-      display: inline-block;
-    }
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 1.8rem;
+      margin-top: 2rem;
     }
 
     .proj-card {
@@ -723,31 +782,12 @@
       transition: all 0.25s;
       display: flex;
       flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .proj-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0);
-      transition: transform 0.3s;
-      transform-origin: left;
     }
 
     .proj-card:hover {
       border-color: var(--accent);
       transform: translateY(-6px);
       box-shadow: var(--glow);
-    }
-
-    .proj-card:hover::after {
-      transform: scaleX(1);
     }
 
     .proj-type {
@@ -759,23 +799,10 @@
       margin-bottom: 0.8rem;
     }
 
-    .proj-type.industrial {
-      color: var(--accent3);
-    }
-
-    .proj-type.game {
-      color: var(--accent2);
-    }
-
-    .proj-type.fullstack {
-      color: var(--accent);
-    }
-
     .proj-title {
       font-weight: 800;
       font-size: 1.1rem;
       margin-bottom: 0.6rem;
-      line-height: 1.3;
     }
 
     .proj-desc {
@@ -793,13 +820,6 @@
       margin-bottom: 1rem;
     }
 
-    .proj-foot {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: auto;
-    }
-
     .proj-link {
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
@@ -809,14 +829,8 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      transition: gap 0.2s;
     }
 
-    .proj-link:hover {
-      gap: 10px;
-    }
-
-    /* CERTS */
     #certs {
       background: var(--bg2);
     }
@@ -836,29 +850,6 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      transition: all 0.2s;
-    }
-
-    .cert-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    .cert-icon {
-      font-size: 1.4rem;
-    }
-
-    .cert-name {
-      font-size: 0.82rem;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    .cert-by {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--muted);
-      margin-top: 3px;
     }
 
     .awards-list {
@@ -880,26 +871,70 @@
 
     .award-medal {
       font-size: 1.3rem;
+      color: #d4af37;
     }
 
-    .award-text {
-      font-size: 0.82rem;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-
-    .award-text strong {
-      color: var(--text);
-      display: block;
-      font-size: 0.88rem;
-      margin-bottom: 2px;
-    }
-
-    /* CONTACT */
     .contact-inner {
       text-align: center;
-      max-width: 640px;
+      max-width: 720px;
       margin: 0 auto;
+    }
+
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(0, 220, 130, 0.2);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: var(--accent);
+      color: var(--viewprojecttext);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
     }
 
     footer {
@@ -909,7 +944,6 @@
       text-align: center;
       font-family: 'Space Mono', monospace;
       font-size: 0.65rem;
-      color: var(--muted);
     }
 
     .fade-up {
@@ -936,22 +970,19 @@
         grid-template-columns: 1fr;
       }
 
-      nav {
-        padding: 0.7rem 1.2rem;
-        left: 3%;
-        right: 3%;
-      }
-
-      .nav-links {
-        gap: 1rem;
-      }
-
       .container {
         padding: 0 1.2rem;
       }
 
       .projects-grid {
         grid-template-columns: 1fr;
+      }
+
+      .floating-contact-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
       }
     }
 
@@ -960,7 +991,7 @@
       justify-content: center;
       gap: 1.5rem;
       flex-wrap: wrap;
-      margin: 2.5rem 0 2rem;
+      margin: 2rem 0 1.5rem;
     }
 
     .contact-card-modern {
@@ -968,7 +999,6 @@
       align-items: center;
       gap: 0.9rem;
       background: var(--card);
-      backdrop-filter: blur(8px);
       padding: 1rem 2rem;
       border-radius: 60px;
       text-decoration: none;
@@ -976,14 +1006,12 @@
       font-family: 'Space Mono', monospace;
       font-size: 0.85rem;
       font-weight: 500;
-      letter-spacing: 0.03em;
       border: 1px solid var(--border);
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
     }
 
     .contact-card-modern:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
       border-color: var(--accent);
       color: var(--accent);
     }
@@ -997,46 +1025,69 @@
       border-radius: 60px;
       font-family: 'Space Mono', monospace;
       font-size: 0.75rem;
-      color: var(--muted);
       border: 1px solid var(--border);
       margin-top: 1rem;
+    }
+
+    .sec-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0;
     }
   </style>
 </head>
 
 <body>
-
   <div id="threeCanvas"></div>
   <canvas id="meteorCanvas"></canvas>
-
   <div id="ks-cursor-dot"></div>
   <div id="ks-cursor-trail"></div>
 
+  <a href="#contact-form-section" class="floating-contact-btn" id="floatingContactBtn">
+    <i class="fas fa-envelope"></i>
+  </a>
+
   <nav>
-    <div class="nav-logo">KS // Portfolio</div>
+    <div class="nav-logo"><i class="fas fa-code"></i> KS // Full Stack</div>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-      <button class="theme-btn" id="themeToggle">
-        <span class="theme-icon" id="themeIcon">🌙</span>
-        <span id="themeLabel">Dark</span>
-      </button>
+      <button class="theme-btn" id="themeToggle"><span class="theme-icon" id="themeIcon">🌙</span><span
+          id="themeLabel">Dark</span></button>
     </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
   </nav>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <button class="close-menu-btn" id="closeMenuBtn">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#skills" class="mobile-nav-link">Skills</a>
+    <a href="#experience" class="mobile-nav-link">Experience</a>
+    <a href="#projects" class="mobile-nav-link">Projects</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+    <button class="theme-btn" id="mobileThemeToggle" style="margin-top: 1rem;"><span
+        class="theme-icon-mobile">🌙</span><span id="mobileThemeLabel">Dark</span></button>
+  </div>
 
   <section id="hero">
     <div class="container">
       <div class="hero-inner">
         <div class="hero-left">
-          <div class="hero-tag">Industrial &amp; Full-Stack Developer</div>
-          <h1 class="hero-name">Karthikeyan<br><span>Srinivasalu</span></h1>
+          <div class="hero-tag">Full-Stack & Industrial Software Engineer</div>
+          <h1 class="hero-name">Karthi<span>keyan</span></h1>
           <div class="hero-title"><span class="typing-line" id="typingLine"></span></div>
           <div class="hero-cta">
-            <a href="#projects" class="btn-primary">View Projects ↓</a>
-            <a href="mailto:karthikeyansrinivasalu@gmail.com" class="btn-ghost">✉ Contact Me</a>
+            <a href="#projects" class="btn-primary"><i class="fas fa-arrow-down"></i> View Projects</a>
+            <a href="#contact-form-section" class="btn-ghost"><i class="fas fa-envelope"></i> Contact Me</a>
           </div>
         </div>
         <div class="hero-visual">
@@ -1047,19 +1098,20 @@
           </div>
           <div class="term-body">
             <span class="term-line"><span class="tc-g">➜</span> <span class="tc-b">whoami</span></span>
-            <span class="term-line tc-m">Karthikeyan Srinivasalu</span>
+            <span class="term-line tc-m">Karthikeyan Srinivasalu · Full Stack Developer</span>
             <span class="term-line">&nbsp;</span>
-            <span class="term-line"><span class="tc-g">➜</span> <span class="tc-b">cat skills.txt</span></span>
-            <span class="term-line tc-o">⚙ CompactLogix · Modbus · Beckhoff</span>
-            <span class="term-line tc-b">⚛ React · Node · Python · MSSQL</span>
-            <span class="term-line tc-g">📡 MQTT · WebSocket · REST APIs</span>
+            <span class="term-line"><span class="tc-g">➜</span> <span class="tc-b">cat fullstack_tools.txt</span></span>
+            <span class="term-line tc-b"><i class="fab fa-react"></i> React · Node · Python · MongoDB · MSSQL</span>
+            <span class="term-line tc-o"><i class="fas fa-industry"></i> WMS · Production Reporting · AMR Queue</span>
+            <span class="term-line tc-g"><i class="fas fa-network-wired"></i> MQTT · REST APIs · PLC Integration</span>
             <span class="term-line">&nbsp;</span>
             <span class="term-line"><span class="tc-g">➜</span> <span class="tc-b">ls projects/</span></span>
-            <span class="term-line tc-m">PLC-Monitor-Pro/ ASRS-WMS/ AMR-Queue/</span>
-            <span class="term-line tc-m">Maintenance-Mgr/ Food-Recipe/ Chat-App/</span>
+            <span class="term-line tc-m">PLC-Monitor-Pro/ ASRS-WMS/ AMR-Queue/ Maintenance-Mgr/ Food-Recipe/
+              Chat-App/</span>
+            <span class="term-line tc-m">Speed-Run-Gantt/ Drive-To-Survive/</span>
             <span class="term-line">&nbsp;</span>
-            <span class="term-line"><span class="tc-g">➜</span> <span class="tc-b">./run portfolio.sh</span><span
-                class="cursor"></span></span>
+            <span class="term-line"><span class="tc-g">➜</span> <span class="tc-b">./run
+                fullstack_engineer.sh</span><span class="cursor"></span></span>
           </div>
         </div>
       </div>
@@ -1071,38 +1123,44 @@
     <div class="container">
       <div class="fade-up">
         <div class="sec-label">01 — About</div>
-        <h2 class="sec-title">Where code meets<br>the machine</h2>
+        <h2 class="sec-title">Full-Stack developer driving industrial intelligence</h2>
       </div>
       <div class="about-grid fade-up">
         <div class="about-text">
-          <p>I'm a <strong>Full-Stack Developer and Industrial Automation Programmer</strong> based in Coimbatore, Tamil
-            Nadu. I bridge the gap between factory floors and digital dashboards — writing Python scripts that talk to
-            PLCs in the morning and building React dashboards in the afternoon.</p>
-          <p>At <strong>Sieger Spintech Equipments</strong>, I built production monitoring systems, ASRS warehouse
-            logic, AMR queue management, and PLC monitoring software — all from scratch. My tools connect to
-            <strong>700+ tags in real time</strong> and serve 30+ daily users in live industrial environments.
-          </p>
-          <p>When I'm not automating factories, I'm crafting <strong>full-stack web apps</strong> and
-            <strong>browser-based games</strong> — because I believe creativity and engineering aren't opposites.
-          </p>
+          <p>I'm a <strong>Full-Stack Developer and Industrial Software Engineer</strong> based in Coimbatore, India. I
+            design and maintain mission-critical systems — <strong>Warehouse Management (WMS), Production Reporting
+              Software, and AMR Queue Management</strong> — trusted daily by <strong>over 300 users across 13+
+              companies</strong> to operate production machinery efficiently.</p>
+          <p>At <strong>Sieger Spintech Equipments</strong>, I've automated key workflows, resulting in a <strong>20%
+              improvement in overall production efficiency</strong>. By building accurate tracking and validation
+            mechanisms, I've significantly reduced material mix-ups and enhanced fault detection for faster issue
+            resolution. My reporting tools identify up to <strong>85% of automation-related issues</strong>, slashing
+            troubleshooting time and minimizing downtime.</p>
+          <p>With <strong>2 years of professional experience</strong> in full-stack development and industrial
+            automation, I bridge the gap between factory floors and modern web platforms. Beyond industrial systems, I
+            build full-stack web apps, browser games, and real-time platforms — because robust engineering meets
+            creative problem-solving.</p>
         </div>
         <div>
           <div class="stat-grid">
             <div class="stat-card">
-              <div class="stat-num">700+</div>
-              <div class="stat-label">PLC Tags Real-Time</div>
+              <div class="stat-num"><span class="num-value" data-count="300">0</span><span class="stat-symbol">+</span>
+              </div>
+              <div class="stat-label">Daily Users Across 13+ Companies</div>
             </div>
             <div class="stat-card">
-              <div class="stat-num">30+</div>
-              <div class="stat-label">Daily Software Users</div>
+              <div class="stat-num"><span class="num-value" data-count="20">0</span><span class="stat-symbol">%</span>
+              </div>
+              <div class="stat-label">Production Efficiency Gain</div>
             </div>
             <div class="stat-card">
-              <div class="stat-num">85%</div>
-              <div class="stat-label">AMR Automation Rate</div>
+              <div class="stat-num"><span class="num-value" data-count="85">0</span><span class="stat-symbol">%</span>
+              </div>
+              <div class="stat-label">Automation Issue Detection</div>
             </div>
             <div class="stat-card">
-              <div class="stat-num">30%</div>
-              <div class="stat-label">Fault Detection Faster</div>
+              <div class="stat-num"><span class="num-value" data-count="2">0</span></div>
+              <div class="stat-label">Years of Experience</div>
             </div>
           </div>
         </div>
@@ -1115,36 +1173,55 @@
     <div class="container">
       <div class="fade-up">
         <div class="sec-label">02 — Skills</div>
-        <h2 class="sec-title">Full-spectrum engineering</h2>
-        <p class="sec-sub">From PLC registers to React components — I work across the entire automation + software
-          stack.</p>
+        <h2 class="sec-title">Modern full-stack + industrial edge</h2>
+        <p class="sec-sub">React, Node, Python, PLC integration, and systems that run factories.</p>
       </div>
       <div class="skills-grid fade-up">
         <div class="skill-card">
-          <div class="skill-icon">⚙️</div>
-          <div class="skill-name">Industrial Automation</div>
-          <div class="skill-tags"><span class="tag">CompactLogix PLC</span><span class="tag">Modbus TCP</span><span
-              class="tag">Beckhoff</span><span class="tag">pycomm3</span><span class="tag">MQTT</span></div>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon">⚛️</div>
+          <div class="skill-icon"><i class="fab fa-react"></i></div>
           <div class="skill-name">Frontend & Mobile</div>
-          <div class="skill-tags"><span class="tag">React.js</span><span class="tag">Angular</span><span
-              class="tag">TypeScript</span><span class="tag">Tailwind</span><span class="tag">Android Studio</span><span
-              class="tag">Kotlin</span></div>
+          <div class="skill-tags">
+            <span class="tag">React.js</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Tailwind</span>
+            <span class="tag">Kotlin</span>
+          </div>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">🐍</div>
+          <div class="skill-icon"><i class="fas fa-server"></i></div>
           <div class="skill-name">Backend & Data</div>
-          <div class="skill-tags"><span class="tag">Python</span><span class="tag">Django</span><span
-              class="tag">Flask</span><span class="tag">Node.js</span><span class="tag">Express</span><span
-              class="tag">MongoDB</span><span class="tag">MySQL/MSSQL</span></div>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Django</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">MSSQL</span>
+            <span class="tag">REST APIs</span>
+          </div>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">🏭</div>
-          <div class="skill-name">Industrial SW</div>
-          <div class="skill-tags"><span class="tag">ASRS/WMS</span><span class="tag">AMR Integration</span><span
-              class="tag">PMS Dashboards</span><span class="tag">PLC Monitor Pro</span></div>
+          <div class="skill-icon"><i class="fas fa-industry"></i></div>
+          <div class="skill-name">Industrial Software</div>
+          <div class="skill-tags">
+            <span class="tag">WMS</span>
+            <span class="tag">Production Reporting</span>
+            <span class="tag">AMR Queue</span>
+            <span class="tag">pycomm3</span>
+            <span class="tag">MQTT</span>
+            <span class="tag">Modbus</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-robot"></i></div>
+          <div class="skill-name">Automation</div>
+          <div class="skill-tags">
+            <span class="tag">ASRS Logic</span>
+            <span class="tag">AMR Integration</span>
+            <span class="tag">PLC Monitor</span>
+            <span class="tag">Predictive Alerts</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1155,34 +1232,33 @@
     <div class="container">
       <div class="fade-up">
         <div class="sec-label">03 — Experience</div>
-        <h2 class="sec-title">Where I've built things</h2>
+        <h2 class="sec-title">Where industrial systems meet code</h2>
       </div>
       <div class="exp-timeline fade-up">
         <div class="exp-item">
           <div class="exp-meta">
             <div class="exp-company">Sieger Spintech Equipments</div>
-            <div class="exp-role">PMS Developer</div>
+            <div class="exp-role">Industrial Software Engineer</div>
             <div class="exp-date">Sept 2024 – Present</div>
           </div>
           <ul class="exp-bullets">
-            <li>PLC-Python communication (Modbus, CompactLogix) for real-time data exchange</li>
-            <li>ASRS core logic & WMS development with pycomm3</li>
-            <li>AMR integration via MQTT (85% autonomous pallet transport)</li>
-            <li>PLC Monitor Pro: multi-protocol, 700+ tags, 30+ daily users</li>
-            <li>Maintenance software with predictive alerts & escalation</li>
-            <li>Modbus TCP Simulator for virtual PLC testing</li>
+            <li>Own WMS, Production Reporting, AMR Queue Management — used daily by 300+ users across 13+ companies</li>
+            <li>Delivered 20% efficiency boost by automating workflows & optimizing factory processes</li>
+            <li>Reduced material mix-ups with precise tracking/validation, improved fault detection for rapid issue
+              resolution</li>
+            <li>Reporting tools identify 85% of automation issues, cutting troubleshooting time and future downtime</li>
+            <li>PLC-Python integration (pycomm3/modbus) enabling real-time machine visibility</li>
           </ul>
         </div>
-        <div class="exp-item">
+        <!-- <div class="exp-item">
           <div class="exp-meta">
             <div class="exp-company">Xentrix Hi-Tech</div>
             <div class="exp-role">Full Stack Developer</div>
             <div class="exp-date">Jun 2024 – Sept 2024</div>
           </div>
           <ul class="exp-bullets">
-            <li>Swagger API documentation, Redux Toolkit, MongoDB CRUD</li>
-            <li>Real-time chat app (MERN + WebSocket)</li>
-            <li>Memory leak fixes & performance optimization</li>
+            <li>Swagger API, Redux Toolkit, MongoDB real-time chat app (MERN + WebSocket)</li>
+            <li>Performance tuning & scalable architecture</li>
           </ul>
         </div>
         <div class="exp-item">
@@ -1192,9 +1268,9 @@
             <div class="exp-date">Aug 2023 – Oct 2023</div>
           </div>
           <ul class="exp-bullets">
-            <li>2+ LeetCode daily, advanced JavaScript, BookMyShow DB schema</li>
+            <li>Advanced JS, LeetCode, DB schema design for complex platforms</li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -1204,130 +1280,67 @@
     <div class="container">
       <div class="fade-up">
         <div class="sec-label">04 — Projects</div>
-        <h2 class="sec-title">Things I've shipped</h2>
-        <p class="sec-sub">Industrial systems, full‑stack apps, and browser games — built with purpose.</p>
+        <h2 class="sec-title">Systems that perform & scale</h2>
+        <p class="sec-sub">Industrial platforms, full-stack apps, and interactive games.</p>
       </div>
-      
-      <!-- INDUSTRIAL PROJECTS SECTION -->
-      <div class="projects-section fade-up">
-        <div class="projects-subtitle">🏭 INDUSTRIAL AUTOMATION</div>
-        <div class="projects-grid">
-          <div class="proj-card">
-            <div class="proj-type industrial">⚙ Industrial Software</div>
-            <div class="proj-title">PLC Monitor Pro</div>
-            <div class="proj-desc">Multi-protocol industrial monitoring software connecting CompactLogix, Modbus, and
-              Beckhoff PLCs from a single interface. Reads 700+ tags in real time with zero performance lag. Supports
-              reading and overwriting tag values. Used by 30+ users daily in live production.</div>
-            <div class="proj-stack"><span class="tag">Python</span><span class="tag">pycomm3</span><span
-                class="tag">pymodbus</span><span class="tag">CompactLogix</span></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type industrial">⚙ Industrial Software</div>
-            <div class="proj-title">Warehouse Management + ASRS</div>
-            <div class="proj-desc">Full warehouse management software with store/retrieve material data. ASRS logic
-              controlling pick, place, and rearrangement operations by sending direct PLC instructions via pycomm3.
-              Automates warehouse material handling with autonomous pallet operations.</div>
-            <div class="proj-stack"><span class="tag">Python</span><span class="tag">pycomm3</span><span
-                class="tag">MSSQL</span><span class="tag">React</span></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type industrial">⚙ Industrial Software</div>
-            <div class="proj-title">Cone to Container & AMR Queue Manager</div>
-            <div class="proj-desc">Tracks each textile cone from start to end process — where loaded and unloaded.
-              Manages AMR queue operations via MQTT, enabling autonomous pallet pick-and-place with full traceability
-              throughout the production line. Handles 85% of pallet transport autonomously.</div>
-            <div class="proj-stack"><span class="tag">Python</span><span class="tag">MQTT</span><span
-                class="tag">AMR</span><span class="tag">React</span><span class="tag">MySQL</span></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type industrial">⚙ Industrial Software</div>
-            <div class="proj-title">Maintenance Management Software</div>
-            <div class="proj-desc">Tracks each machine's maintenance reports and schedules. Sends maintenance alerts and
-              critical alerts. Escalates unresolved issues to higher authorities automatically. Monitors machine cycle
-              time before maintenance to predict upcoming servicing needs.</div>
-            <div class="proj-stack"><span class="tag">Python</span><span class="tag">React</span><span
-                class="tag">PLC</span><span class="tag">MSSQL</span><span class="tag">Alert System</span></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type industrial">⚙ Industrial Tool</div>
-            <div class="proj-title">Modbus TCP Simulator</div>
-            <div class="proj-desc">Virtual PLC simulation system using Modbus TCP (localhost:502). Supports full
-              read/write of Modbus registers, mimicking real PLC behavior without physical hardware. Accelerates
-              development cycles and reduces hardware dependency for automation testing.</div>
-            <div class="proj-stack"><span class="tag">Python</span><span class="tag">Modbus TCP</span><span
-                class="tag">Virtual PLC</span></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type industrial">⚙ Industrial Dashboard</div>
-            <div class="proj-title">Live Machine Performance Dashboard</div>
-            <div class="proj-desc">Live machinery monitoring showing working hours, production counts, material
-              tracking, and real-time error logging. Built with Python and Dash, cutting fault detection time by 30% at
-              Sieger Spintech.</div>
-            <div class="proj-stack"><span class="tag">Python</span><span class="tag">Dash/Plotly</span><span
-                class="tag">PLC</span></div>
-          </div>
+      <div class="projects-grid fade-up">
+        <div class="proj-card">
+          <div class="proj-type">Industrial Core</div>
+          <div class="proj-title">Warehouse Management + ASRS</div>
+          <div class="proj-desc">Full WMS with store/retrieve material data, ASRS logic controlling
+            pick/place/rearrangement. Direct PLC instruction layer.</div>
+          <div class="proj-stack"><span class="tag">Python</span><span class="tag">pycomm3</span><span
+              class="tag">MSSQL</span><span class="tag">React</span></div>
         </div>
-      </div>
-
-      <!-- GAMES & FULL STACK SECTION -->
-      <div class="projects-section fade-up">
-        <div class="projects-subtitle">🎮 GAMES & FULL‑STACK APPLICATIONS</div>
-        <div class="projects-grid">
-          <div class="proj-card">
-            <div class="proj-type fullstack">◉ Full-Stack App</div>
-            <div class="proj-title">Private Chat Application</div>
-            <div class="proj-desc">Real-time chat with message status indicators (single, double, blue ticks), push
-              notifications, file/image/video sharing (25 MB limit), emoji support, global messaging, and
-              online/last-seen status.</div>
-            <div class="proj-stack"><span class="tag">Next.js</span><span class="tag">Node.js</span><span
-                class="tag">MongoDB</span><span class="tag">WebSocket</span></div>
-            <div class="proj-foot"><a href="https://github.com/Karthikeyan1331" target="_blank" class="proj-link">GitHub
-                →</a></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type fullstack">◉ Full-Stack App</div>
-            <div class="proj-title">Food Recipe Application</div>
-            <div class="proj-desc">Browse, listen to, or read 6000+ recipes. Features Google OAuth login, carousel
-              navigation, like/share, bookmarks, and user-generated recipe creation. Built with full auth flow and
-              pagination.</div>
-            <div class="proj-stack"><span class="tag">React.js</span><span class="tag">Node.js</span><span
-                class="tag">MongoDB</span><span class="tag">Google OAuth</span></div>
-            <div class="proj-foot"><a href="https://github.com/Karthikeyan1331" target="_blank" class="proj-link">GitHub
-                →</a></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type game">🎮 Game — Strategy Sim</div>
-            <div class="proj-title">Speed Run Gantt Chart</div>
-            <div class="proj-desc">Project management simulator where you play as a project manager. Assign tasks to
-              team members based on their specializations and race against the timeline. A creative way to teach Gantt
-              chart thinking.</div>
-            <div class="proj-stack"><span class="tag">HTML</span><span class="tag">CSS</span><span
-                class="tag">JavaScript</span></div>
-            <div class="proj-foot"><a href="https://speedrungnattchart.netlify.app" target="_blank"
-                class="proj-link">Live Demo →</a></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type game">🎮 Game — Survival Sim</div>
-            <div class="proj-title">Drive to Survive</div>
-            <div class="proj-desc">Survival game where you play as a driver trying to stay alive for 30+ days and earn
-              maximum money. Strategy, risk, and endurance — your decisions determine how long you last.</div>
-            <div class="proj-stack"><span class="tag">HTML</span><span class="tag">CSS</span><span
-                class="tag">JavaScript</span></div>
-            <div class="proj-foot"><a href="https://drivetosurvivesimulator.netlify.app" target="_blank"
-                class="proj-link">Live Demo →</a></div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-type game">🎮 Games Collection</div>
-            <div class="proj-title">Browser Games: Snake · Connect Four · 2048 · Chess Vision</div>
-            <div class="proj-desc">A suite of classic and original browser games built in vanilla HTML/CSS/JS. Snake
-              with global leaderboard, Connect Four two-player, 2048 tile combiner, and Chess Vision reflex trainer.
-            </div>
-            <div class="proj-stack"><span class="tag">HTML</span><span class="tag">CSS</span><span
-                class="tag">JavaScript</span><span class="tag">jQuery</span></div>
-            <div class="proj-foot"><a href="https://snakegameleader.netlify.app" target="_blank" class="proj-link">Snake
-                →</a><a href="https://vektronconnectfour.netlify.app" target="_blank" class="proj-link">Connect Four
-                →</a></div>
-          </div>
+        <div class="proj-card">
+          <div class="proj-type">Industrial Software</div>
+          <div class="proj-title">AMR Queue & Cone Tracking</div>
+          <div class="proj-desc">Tracks textile cones end-to-end, manages AMR queue operations via MQTT for autonomous
+            pallet transport with full traceability.</div>
+          <div class="proj-stack"><span class="tag">Python</span><span class="tag">MQTT</span><span
+              class="tag">React</span><span class="tag">AMR</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-type">Industrial Software</div>
+          <div class="proj-title">Maintenance Management</div>
+          <div class="proj-desc">Tracks machine maintenance reports & schedules, sends alerts, escalates unresolved
+            issues automatically.</div>
+          <div class="proj-stack"><span class="tag">Python</span><span class="tag">React</span><span
+              class="tag">PLC</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-type">Full-Stack App</div>
+          <div class="proj-title">Private Chat Application</div>
+          <div class="proj-desc">Real-time chat with file/image sharing, online status, WebSocket support.</div>
+          <div class="proj-stack"><span class="tag">Next.js</span><span class="tag">Node.js</span><span
+              class="tag">MongoDB</span><span class="tag">WebSocket</span></div>
+          <div class="proj-foot"><a href="https://github.com/Karthikeyan1331" target="_blank" class="proj-link">GitHub
+              <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-type">Full-Stack App</div>
+          <div class="proj-title">Food Recipe Platform</div>
+          <div class="proj-desc">6000+ recipes, Google OAuth, like/share, user-submitted recipes.</div>
+          <div class="proj-stack"><span class="tag">React</span><span class="tag">Node</span><span
+              class="tag">MongoDB</span></div>
+          <div class="proj-foot"><a href="https://github.com/Karthikeyan1331" class="proj-link">GitHub <i
+                class="fas fa-arrow-right"></i></a></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-type">Browser Game</div>
+          <div class="proj-title">Speed Run Gantt Chart</div>
+          <div class="proj-desc">Project management simulator: assign specialists & race the timeline.</div>
+          <div class="proj-stack"><span class="tag">HTML/CSS/JS</span></div>
+          <div class="proj-foot"><a href="https://speedrungnattchart.netlify.app" target="_blank" class="proj-link">Live
+              Demo <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-type">Browser Game</div>
+          <div class="proj-title">Drive to Survive</div>
+          <div class="proj-desc">Survival driving simulator — earn money, survive 30+ days.</div>
+          <div class="proj-stack"><span class="tag">HTML/CSS/JS</span></div>
+          <div class="proj-foot"><a href="https://drivetosurvivesimulator.netlify.app" target="_blank"
+              class="proj-link">Live Demo <i class="fas fa-arrow-right"></i></a></div>
         </div>
       </div>
     </div>
@@ -1337,33 +1350,33 @@
   <section id="certs">
     <div class="container">
       <div class="fade-up">
-        <div class="sec-label">05 — Certifications &amp; Awards</div>
-        <h2 class="sec-title">Recognition &amp; credentials</h2>
+        <div class="sec-label">05 — Credentials</div>
+        <h2 class="sec-title">Certifications & achievements</h2>
       </div>
       <div class="certs-grid fade-up">
         <div class="cert-card">
-          <div class="cert-icon">🏅</div>
+          <div class="cert-icon"><i class="fas fa-certificate"></i></div>
           <div>
             <div class="cert-name">Problem Solving (Intermediate)</div>
             <div class="cert-by">HackerRank</div>
           </div>
         </div>
         <div class="cert-card">
-          <div class="cert-icon">🏅</div>
+          <div class="cert-icon"><i class="fab fa-js"></i></div>
           <div>
             <div class="cert-name">JavaScript (Intermediate)</div>
             <div class="cert-by">HackerRank</div>
           </div>
         </div>
         <div class="cert-card">
-          <div class="cert-icon">🏅</div>
+          <div class="cert-icon"><i class="fas fa-database"></i></div>
           <div>
             <div class="cert-name">SQL (Basic)</div>
             <div class="cert-by">HackerRank</div>
           </div>
         </div>
         <div class="cert-card">
-          <div class="cert-icon">🏅</div>
+          <div class="cert-icon"><i class="fab fa-python"></i></div>
           <div>
             <div class="cert-name">Python (Basic)</div>
             <div class="cert-by">HackerRank</div>
@@ -1372,15 +1385,15 @@
       </div>
       <div class="awards-list fade-up">
         <div class="award-item">
-          <div class="award-medal">🥈</div>
+          <div class="award-medal"><i class="fas fa-trophy"></i></div>
           <div class="award-text"><strong>2nd Place — Web-A-Fest '22</strong>Bannari Amman Institute</div>
         </div>
         <div class="award-item">
-          <div class="award-medal">🥈</div>
+          <div class="award-medal"><i class="fas fa-trophy"></i></div>
           <div class="award-text"><strong>2nd Place — Code War</strong>PSG College of Arts</div>
         </div>
         <div class="award-item">
-          <div class="award-medal">🥈</div>
+          <div class="award-medal"><i class="fas fa-trophy"></i></div>
           <div class="award-text"><strong>2nd Place — Mr.Coder</strong>Anna University Regional</div>
         </div>
       </div>
@@ -1392,16 +1405,31 @@
     <div class="container">
       <div class="contact-inner fade-up">
         <div class="sec-label" style="justify-content:center;">06 — Contact</div>
-        <h2 class="sec-title">Let's build something</h2>
-        <p class="sec-sub" style="margin:0 auto;">Whether it's a PLC integration challenge, a full-stack app, or
-          something unusual — I'm open to interesting problems.</p>
+        <h2 class="sec-title">Let's build the next generation of smart systems</h2>
+        <p class="sec-sub" style="margin:0 auto;">Full-stack development, industrial automation, or creative tech
+          challenges — let's connect.</p>
         <div class="contact-card-group">
           <a href="mailto:karthikeyansrinivasalu@gmail.com" class="contact-card-modern"><i
-              class="fas fa-envelope"></i><span>Contact Me</span></a>
+              class="fas fa-envelope"></i><span>Email Me</span></a>
           <a href="https://www.linkedin.com/in/karthikeyan-srinivasalu-9b7368203/" target="_blank"
             class="contact-card-modern"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
           <a href="https://github.com/Karthikeyan1331" target="_blank" class="contact-card-modern"><i
               class="fab fa-github"></i><span>GitHub</span></a>
+        </div>
+        <div id="contact-form-section" class="contact-form">
+          <h3 style="margin-bottom: 1.5rem; font-size: 1.3rem;">Send a Message</h3>
+          <form action="https://formspree.io/f/mlgzzyzw" method="POST" id="contactForm">
+            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group"><input type="text" name="firstName" placeholder="First Name" required></div>
+              <div class="form-group"><input type="text" name="lastName" placeholder="Last Name" required></div>
+            </div>
+            <div class="form-group"><input type="email" name="email" placeholder="Email Address" required></div>
+            <div class="form-group"><textarea name="message" placeholder="Your message..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="formSubmitBtn"><i class="fas fa-paper-plane"></i> Send
+              Message</button>
+            <p id="formStatus" style="margin-top: 1rem; font-size: 0.8rem; text-align: center;"></p>
+          </form>
         </div>
         <div class="location-chip"><i class="fas fa-map-marker-alt"></i><span>Sulur, Coimbatore - 641402, Tamil Nadu,
             India</span></div>
@@ -1409,184 +1437,63 @@
     </div>
   </section>
 
-  <footer>Designed &amp; built by Karthikeyan Srinivasalu &nbsp;·&nbsp; Sulur, Coimbatore &nbsp;·&nbsp; 2026</footer>
+  <footer>Designed & built by Karthikeyan Srinivasalu · Full Stack & Industrial Engineering · 2026</footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    // ========== 3D GALAXY BACKGROUND ==========
-    const container = document.getElementById('threeCanvas');
-    const scene = new THREE.Scene();
-    scene.background = null;
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 0, 22);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
-    container.appendChild(renderer.domElement);
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-    const coreGeo = new THREE.IcosahedronGeometry(2.2, 0);
-    const coreMat = new THREE.MeshPhysicalMaterial({ color: 0x00dc82, metalness: 0.6, roughness: 0.3, transparent: true, opacity: 0.4 });
-    const core = new THREE.Mesh(coreGeo, coreMat);
-    scene.add(core);
-
-    const wireMat = new THREE.MeshBasicMaterial({ color: 0x00a8ff, wireframe: true, transparent: true, opacity: 0.5 });
-    const wireframeShell = new THREE.Mesh(coreGeo, wireMat);
-    wireframeShell.scale.setScalar(1.08);
-    scene.add(wireframeShell);
-
-    const satellites = [];
-    for (let i = 0; i < 60; i++) {
-      let shape = i % 3 === 0 ? new THREE.DodecahedronGeometry(0.2) : (i % 3 === 1 ? new THREE.SphereGeometry(0.16, 8, 8) : new THREE.IcosahedronGeometry(0.18, 0));
-      const mat = new THREE.MeshStandardMaterial({ color: new THREE.Color().setHSL(0.45 + (i / 60) * 0.3, 0.7, 0.6), metalness: 0.5 });
-      const orb = new THREE.Mesh(shape, mat);
-      const radius = 4.2 + Math.random() * 1.5;
-      const angle = (i / 60) * Math.PI * 2;
-      const speed = 0.002 + Math.random() * 0.008;
-      const yOffset = (Math.random() - 0.5) * 3.5;
-      orb.userData = { radius, angle, speed, yOffset, rotSpeed: 0.008 + Math.random() * 0.015 };
-      orb.position.set(Math.cos(angle) * radius, yOffset, Math.sin(angle) * radius);
-      scene.add(orb);
-      satellites.push(orb);
+    function openMobileMenu() {
+      mobileNavOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.06, 64, 300), new THREE.MeshStandardMaterial({ color: 0x00dc82, emissive: 0x007a45, emissiveIntensity: 0.25 }));
-    ring.rotation.x = Math.PI / 2;
-    scene.add(ring);
-    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(4.8, 0.05, 64, 300), new THREE.MeshStandardMaterial({ color: 0x00a8ff, emissive: 0x0055cc, emissiveIntensity: 0.2 }));
-    ring2.rotation.z = Math.PI / 3;
-    ring2.rotation.x = Math.PI / 2.5;
-    scene.add(ring2);
-
-    const ambient = new THREE.AmbientLight(0x2a2a4a);
-    const mainLight = new THREE.DirectionalLight(0xffffff, 1.0);
-    mainLight.position.set(3, 5, 4);
-    const fillLight = new THREE.PointLight(0x00dc82, 0.4);
-    fillLight.position.set(-2, 1, 3);
-    const backLight = new THREE.PointLight(0x00a8ff, 0.5);
-    backLight.position.set(0, 2, -7);
-    scene.add(ambient, mainLight, fillLight, backLight);
-
-    const starCount = 2500;
-    const starGeo = new THREE.BufferGeometry();
-    const starPos = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount; i++) {
-      starPos[i * 3] = (Math.random() - 0.5) * 200;
-      starPos[i * 3 + 1] = (Math.random() - 0.5) * 120;
-      starPos[i * 3 + 2] = (Math.random() - 0.5) * 100 - 50;
+    function closeMobileMenu() {
+      mobileNavOverlay.classList.remove('active');
+      document.body.style.overflow = '';
     }
-    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-    const starMat = new THREE.PointsMaterial({ color: 0xaaccff, size: 0.12, transparent: true, opacity: 0.6 });
-    const stars = new THREE.Points(starGeo, starMat);
-    scene.add(stars);
 
-    let time = 0;
-    function animate3D() {
-      requestAnimationFrame(animate3D);
-      time += 0.012;
-      core.rotation.y = time * 0.2;
-      core.rotation.x = Math.sin(time * 0.15) * 0.1;
-      wireframeShell.rotation.y = time * 0.22;
-      wireframeShell.rotation.x = Math.sin(time * 0.16) * 0.1;
-
-      satellites.forEach(sat => {
-        sat.userData.angle += sat.userData.speed;
-        sat.position.x = Math.cos(sat.userData.angle) * sat.userData.radius;
-        sat.position.z = Math.sin(sat.userData.angle) * sat.userData.radius;
-        sat.position.y = sat.userData.yOffset + Math.sin(time * 0.7 + sat.userData.radius) * 0.25;
-        sat.rotation.x += sat.userData.rotSpeed;
-        sat.rotation.y += sat.userData.rotSpeed * 1.3;
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', openMobileMenu);
+    }
+    if (closeMenuBtn) {
+      closeMenuBtn.addEventListener('click', closeMobileMenu);
+    }
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        closeMobileMenu();
+        const targetId = link.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          setTimeout(() => {
+            const target = document.querySelector(targetId);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
       });
-
-      ring.rotation.z = time * 0.18;
-      ring2.rotation.x = Math.PI / 2.5 + Math.sin(time * 0.25) * 0.08;
-      ring2.rotation.y = time * 0.12;
-
-      stars.rotation.y = time * 0.02;
-      stars.rotation.x = time * 0.01;
-
-      camera.position.x = Math.sin(time * 0.08) * 0.4;
-      camera.position.y = Math.cos(time * 0.1) * 0.3;
-      camera.lookAt(0, 0, 0);
-
-      renderer.render(scene, camera);
-    }
-    animate3D();
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // ========== METEOR / PARTICLE CANVAS ==========
-    const meteorCanvas = document.getElementById('meteorCanvas');
-    const mCtx = meteorCanvas.getContext('2d');
-    let meteors = [];
-    function resizeMeteor() { meteorCanvas.width = window.innerWidth; meteorCanvas.height = window.innerHeight; }
-    window.addEventListener('resize', resizeMeteor);
-    resizeMeteor();
+    // Mobile theme toggle sync
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    const mobileThemeIcon = document.querySelector('#mobileThemeToggle .theme-icon-mobile');
+    const mobileThemeLabel = document.getElementById('mobileThemeLabel');
 
-    class Meteor {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * meteorCanvas.width * 0.6;
-        this.y = Math.random() * meteorCanvas.height * 0.2;
-        this.len = 40 + Math.random() * 60;
-        this.sx = 3 + Math.random() * 8;
-        this.sy = 2 + Math.random() * 6;
-        this.opacity = 0.3 + Math.random() * 0.5;
-        this.color = `rgba(0, 220, 130, ${this.opacity * 0.6})`;
-      }
-      update() {
-        this.x += this.sx;
-        this.y += this.sy;
-        if (this.x > meteorCanvas.width + 150 || this.y > meteorCanvas.height + 150) this.reset();
-      }
-      draw() {
-        mCtx.beginPath();
-        const grad = mCtx.createLinearGradient(this.x, this.y, this.x - this.len * 0.7, this.y - this.len * 0.5);
-        grad.addColorStop(0, `rgba(0, 220, 130, ${this.opacity})`);
-        grad.addColorStop(0.6, `rgba(0, 168, 255, ${this.opacity * 0.4})`);
-        grad.addColorStop(1, 'rgba(0, 220, 130, 0)');
-        mCtx.moveTo(this.x, this.y);
-        mCtx.lineTo(this.x - this.len * 0.7, this.y - this.len * 0.5);
-        mCtx.lineTo(this.x - this.len * 0.4, this.y - this.len * 0.3);
-        mCtx.fillStyle = grad;
-        mCtx.fill();
-        mCtx.beginPath();
-        mCtx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-        mCtx.fillStyle = `rgba(0, 220, 130, 0.8)`;
-        mCtx.fill();
+    function syncMobileTheme(theme) {
+      if (mobileThemeIcon && mobileThemeLabel) {
+        if (theme === 'dark') {
+          mobileThemeIcon.textContent = '🌙';
+          mobileThemeLabel.textContent = 'Dark';
+        } else {
+          mobileThemeIcon.textContent = '☀️';
+          mobileThemeLabel.textContent = 'Light';
+        }
       }
     }
-    for (let i = 0; i < 18; i++) meteors.push(new Meteor());
-    function animateMeteors() {
-      mCtx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height);
-      meteors.forEach(m => { m.update(); m.draw(); });
-      requestAnimationFrame(animateMeteors);
-    }
-    animateMeteors();
 
-    // ========== TYPING ANIMATION ==========
-    const phrases = ["Automation Programmer · React & Python Developer", "Industrial IoT · Web Game Creator", "Android Developer · Kotlin/Java"];
-    let idx = 0, charIdx = 0, deleting = false;
-    const typingEl = document.getElementById('typingLine');
-    function typeLoop() {
-      const current = phrases[idx];
-      if (deleting) {
-        typingEl.textContent = current.substring(0, charIdx - 1);
-        charIdx--;
-        if (charIdx === 0) { deleting = false; idx = (idx + 1) % phrases.length; setTimeout(typeLoop, 400); }
-        else { setTimeout(typeLoop, 60); }
-      } else {
-        typingEl.textContent = current.substring(0, charIdx + 1);
-        charIdx++;
-        if (charIdx === current.length) { deleting = true; setTimeout(typeLoop, 2200); }
-        else { setTimeout(typeLoop, 100); }
-      }
-    }
-    typeLoop();
-
-    // ========== THEME & CURSOR ==========
+    // Theme & cursor integration (updated to sync mobile)
     const root = document.documentElement;
     const themeBtn = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
@@ -1594,40 +1501,181 @@
     const cursorDot = document.getElementById('ks-cursor-dot');
     const cursorTrail = document.getElementById('ks-cursor-trail');
 
-    function setTheme(theme) {
+    function applyTheme(theme) {
       root.setAttribute('data-theme', theme);
       if (theme === 'dark') {
-        themeIcon.textContent = '🌙'; themeLabel.textContent = 'Dark';
-        cursorDot.classList.remove('day'); cursorDot.classList.add('night');
-        cursorTrail.classList.remove('day'); cursorTrail.classList.add('night');
+        if (themeIcon) themeIcon.textContent = '🌙';
+        if (themeLabel) themeLabel.textContent = 'Dark';
+        if (cursorDot) { cursorDot.classList.remove('day'); cursorDot.classList.add('night'); }
+        if (cursorTrail) { cursorTrail.classList.remove('day'); cursorTrail.classList.add('night'); }
       } else {
-        themeIcon.textContent = '☀️'; themeLabel.textContent = 'Light';
-        cursorDot.classList.remove('night'); cursorDot.classList.add('day');
-        cursorTrail.classList.remove('night'); cursorTrail.classList.add('day');
+        if (themeIcon) themeIcon.textContent = '☀️';
+        if (themeLabel) themeLabel.textContent = 'Light';
+        if (cursorDot) { cursorDot.classList.remove('night'); cursorDot.classList.add('day'); }
+        if (cursorTrail) { cursorTrail.classList.remove('night'); cursorTrail.classList.add('day'); }
       }
+      syncMobileTheme(theme);
     }
-    let currentTheme = localStorage.getItem('ks-theme') || 'dark';
-    setTheme(currentTheme);
-    themeBtn.addEventListener('click', () => {
-      currentTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('ks-theme', currentTheme);
-      setTheme(currentTheme);
-    });
 
-    document.addEventListener('mousemove', e => {
-      cursorDot.style.left = e.clientX + 'px';
-      cursorDot.style.top = e.clientY + 'px';
-      cursorTrail.style.left = e.clientX + 'px';
-      cursorTrail.style.top = e.clientY + 'px';
-    });
-    document.addEventListener('mousedown', () => { cursorDot.classList.add('clicking'); cursorTrail.classList.add('clicking'); });
-    document.addEventListener('mouseup', () => { cursorDot.classList.remove('clicking'); cursorTrail.classList.remove('clicking'); });
-    document.addEventListener('mouseleave', () => { cursorDot.style.opacity = '0'; cursorTrail.style.opacity = '0'; });
-    document.addEventListener('mouseenter', () => { cursorDot.style.opacity = '1'; cursorTrail.style.opacity = '0.5'; });
+    let savedTheme = localStorage.getItem('ks-theme') || 'dark';
+    applyTheme(savedTheme);
 
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const newTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('ks-theme', newTheme);
+        applyTheme(newTheme);
+      });
+    }
+
+    if (mobileThemeToggle) {
+      mobileThemeToggle.addEventListener('click', () => {
+        const newTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('ks-theme', newTheme);
+        applyTheme(newTheme);
+      });
+    }
+
+    // Animated counters
+    const statNumbers = document.querySelectorAll('.num-value[data-count]');
+    let animated = false;
+    function animateNumbers() {
+      if (animated) return; animated = true;
+      statNumbers.forEach(el => {
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        if (isNaN(target)) return;
+        let current = 0; const increment = target / 50;
+        const update = () => { current += increment; if (current < target) { el.textContent = Math.floor(current); requestAnimationFrame(update); } else { el.textContent = target; } };
+        requestAnimationFrame(update);
+      });
+    }
+    const aboutSection = document.querySelector('#about');
+    if (aboutSection) { new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting && !animated) animateNumbers(); }); }, { threshold: 0.3 }).observe(aboutSection); }
+    setTimeout(() => { const r = document.querySelector('#about')?.getBoundingClientRect(); if (r && r.top < window.innerHeight && !animated) animateNumbers(); }, 500);
+
+    // Form submission
+    const form = document.getElementById('contactForm');
+    const statusMsg = document.getElementById('formStatus');
+    if (form) {
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = document.getElementById('formSubmitBtn');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; btn.disabled = true; statusMsg.innerHTML = '';
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+          if (res.ok) { statusMsg.innerHTML = '<i class="fas fa-check-circle"></i> ✓ Message sent! I\'ll reply soon.'; statusMsg.style.color = '#28ca41'; form.reset(); setTimeout(() => { statusMsg.innerHTML = ''; }, 5000); }
+          else { const data = await res.json(); statusMsg.innerHTML = data.errors ? data.errors.map(e => e.message).join(', ') : 'Submission failed'; statusMsg.style.color = '#ff5f57'; }
+        } catch { statusMsg.innerHTML = 'Failed to send. Please email me directly.'; statusMsg.style.color = '#ff5f57'; }
+        finally { btn.innerHTML = orig; btn.disabled = false; }
+      });
+    }
+
+    // THREE.JS BACKGROUND
+    const containerEl = document.getElementById('threeCanvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera.position.set(0, 0, 14);
+    const renderer3D = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer3D.setSize(window.innerWidth, window.innerHeight);
+    renderer3D.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer3D.setClearColor(0x000000, 0);
+    containerEl.appendChild(renderer3D.domElement);
+    const coreGeo = new THREE.IcosahedronGeometry(4.5, 1);
+    const coreMat = new THREE.MeshPhysicalMaterial({ color: 0x00dc82, metalness: 0.5, roughness: 0.3, transparent: true, opacity: 0.35 });
+    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+    scene.add(coreMesh);
+    const wireMat = new THREE.MeshBasicMaterial({ color: 0x00a8ff, wireframe: true, transparent: true, opacity: 0.45 });
+    const wireframeShell = new THREE.Mesh(coreGeo, wireMat);
+    wireframeShell.scale.setScalar(1.06);
+    scene.add(wireframeShell);
+    const sats = [];
+    for (let i = 0; i < 70; i++) {
+      const shape = i % 3 === 0 ? new THREE.DodecahedronGeometry(0.22) : (i % 3 === 1 ? new THREE.SphereGeometry(0.18, 6, 6) : new THREE.IcosahedronGeometry(0.20, 0));
+      const mat = new THREE.MeshStandardMaterial({ color: new THREE.Color().setHSL(0.45 + (i / 70) * 0.3, 0.7, 0.6) });
+      const orb = new THREE.Mesh(shape, mat);
+      const radius = 6.5 + Math.random() * 2.5;
+      const angle = (i / 70) * Math.PI * 2;
+      const speed = 0.002 + Math.random() * 0.006;
+      const yOffset = (Math.random() - 0.5) * 5;
+      orb.userData = { radius, angle, speed, yOffset, rotSpeed: 0.008 + Math.random() * 0.01 };
+      orb.position.set(Math.cos(angle) * radius, yOffset, Math.sin(angle) * radius);
+      scene.add(orb);
+      sats.push(orb);
+    }
+    const ringMain = new THREE.Mesh(new THREE.TorusGeometry(6.5, 0.08, 64, 300), new THREE.MeshStandardMaterial({ color: 0x00dc82, emissive: 0x007a45, emissiveIntensity: 0.25 }));
+    ringMain.rotation.x = Math.PI / 2;
+    scene.add(ringMain);
+    const ringSec = new THREE.Mesh(new THREE.TorusGeometry(9, 0.06, 64, 300), new THREE.MeshStandardMaterial({ color: 0x00a8ff, emissive: 0x0055cc, emissiveIntensity: 0.18 }));
+    ringSec.rotation.z = Math.PI / 3;
+    ringSec.rotation.x = Math.PI / 2.5;
+    scene.add(ringSec);
+    const ringOuter = new THREE.Mesh(new THREE.TorusGeometry(11.5, 0.04, 64, 300), new THREE.MeshStandardMaterial({ color: 0xff6b35, emissive: 0x8a3a1a, emissiveIntensity: 0.1, transparent: true, opacity: 0.6 }));
+    ringOuter.rotation.x = Math.PI / 3.5;
+    ringOuter.rotation.y = Math.PI / 6;
+    scene.add(ringOuter);
+    scene.add(new THREE.AmbientLight(0x2a2a4a));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    dirLight.position.set(3, 5, 4);
+    scene.add(dirLight);
+    const starCount = 3500;
+    const starBuff = new THREE.BufferGeometry();
+    const starPos = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) { starPos[i * 3] = (Math.random() - 0.5) * 400; starPos[i * 3 + 1] = (Math.random() - 0.5) * 200; starPos[i * 3 + 2] = (Math.random() - 0.5) * 150 - 60; }
+    starBuff.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    scene.add(new THREE.Points(starBuff, new THREE.PointsMaterial({ color: 0xaaccff, size: 0.12, transparent: true, opacity: 0.6 })));
+    function onResize() { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer3D.setSize(window.innerWidth, window.innerHeight); }
+    window.addEventListener('resize', onResize);
+    let globalTime = 0;
+    function animateScene() {
+      requestAnimationFrame(animateScene);
+      globalTime += 0.012;
+      coreMesh.rotation.y = globalTime * 0.18;
+      wireframeShell.rotation.y = globalTime * 0.20;
+      sats.forEach(s => { s.userData.angle += s.userData.speed; s.position.x = Math.cos(s.userData.angle) * s.userData.radius; s.position.z = Math.sin(s.userData.angle) * s.userData.radius; s.position.y = s.userData.yOffset + Math.sin(globalTime * 0.7 + s.userData.radius) * 0.3; s.rotation.x += s.userData.rotSpeed; s.rotation.y += s.userData.rotSpeed * 1.2; });
+      ringMain.rotation.z = globalTime * 0.16;
+      ringSec.rotation.y = globalTime * 0.10;
+      ringOuter.rotation.z = globalTime * 0.07;
+      camera.position.x = Math.sin(globalTime * 0.07) * 1.5;
+      camera.position.y = Math.cos(globalTime * 0.09) * 1.0;
+      camera.lookAt(0, 0, 0);
+      renderer3D.render(scene, camera);
+    }
+    animateScene();
+
+    // Meteor canvas
+    const meteorCanvas = document.getElementById('meteorCanvas');
+    const mCtx = meteorCanvas.getContext('2d');
+    function resizeMeteor() { meteorCanvas.width = window.innerWidth; meteorCanvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeMeteor);
+    resizeMeteor();
+    class MeteorFX { reset() { this.x = Math.random() * meteorCanvas.width * 0.6; this.y = Math.random() * meteorCanvas.height * 0.15; this.len = 40 + Math.random() * 70; this.sx = 3 + Math.random() * 8; this.sy = 2 + Math.random() * 6; this.opacity = 0.3 + Math.random() * 0.5; } update() { this.x += this.sx; this.y += this.sy; if (this.x > meteorCanvas.width + 200 || this.y > meteorCanvas.height + 200) this.reset(); } draw() { mCtx.beginPath(); const grad = mCtx.createLinearGradient(this.x, this.y, this.x - this.len * 0.6, this.y - this.len * 0.5); grad.addColorStop(0, `rgba(0,220,130,${this.opacity})`); grad.addColorStop(0.7, `rgba(0,168,255,${this.opacity * 0.4})`); mCtx.moveTo(this.x, this.y); mCtx.lineTo(this.x - this.len * 0.7, this.y - this.len * 0.5); mCtx.lineTo(this.x - this.len * 0.35, this.y - this.len * 0.3); mCtx.fillStyle = grad; mCtx.fill(); mCtx.beginPath(); mCtx.arc(this.x, this.y, 2.5, 0, Math.PI * 2); mCtx.fillStyle = `rgba(0,220,130,0.8)`; mCtx.fill(); } }
+    const meteors = Array.from({ length: 24 }, () => { const m = new MeteorFX(); m.reset(); return m; });
+    function animateMeteors() { mCtx.clearRect(0, 0, meteorCanvas.width, meteorCanvas.height); meteors.forEach(m => { m.update(); m.draw(); }); requestAnimationFrame(animateMeteors); }
+    animateMeteors();
+
+    // Typing effect
+    const phrases = ["Full Stack Developer · React & Node", "Industrial Software Engineer · WMS & AMR", "Python · MQTT · Real-time Systems"];
+    let pIdx = 0, cIdx = 0, del = false;
+    const typingSpan = document.getElementById('typingLine');
+    function typeEffect() {
+      const cur = phrases[pIdx];
+      if (del) { typingSpan.textContent = cur.substring(0, cIdx - 1); cIdx--; if (cIdx === 0) { del = false; pIdx = (pIdx + 1) % phrases.length; setTimeout(typeEffect, 400); } else setTimeout(typeEffect, 55); }
+      else { typingSpan.textContent = cur.substring(0, cIdx + 1); cIdx++; if (cIdx === cur.length) { del = true; setTimeout(typeEffect, 2100); } else setTimeout(typeEffect, 90); }
+    }
+    typeEffect();
+
+    // Cursor
+    document.addEventListener('mousemove', e => { if (cursorDot) { cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px'; } if (cursorTrail) { cursorTrail.style.left = e.clientX + 'px'; cursorTrail.style.top = e.clientY + 'px'; } });
+    document.addEventListener('mousedown', () => { if (cursorDot) cursorDot.classList.add('clicking'); });
+    document.addEventListener('mouseup', () => { if (cursorDot) cursorDot.classList.remove('clicking'); });
+    document.addEventListener('mouseleave', () => { if (cursorDot) cursorDot.style.opacity = '0'; if (cursorTrail) cursorTrail.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { if (cursorDot) cursorDot.style.opacity = '1'; if (cursorTrail) cursorTrail.style.opacity = '0.5'; });
+
+    // Scroll fade
     const faders = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.12 });
-    faders.forEach(f => observer.observe(f));
+    const fadeObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } }); }, { threshold: 0.1 });
+    faders.forEach(f => fadeObs.observe(f));
   </script>
 </body>
 
